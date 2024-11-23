@@ -7,15 +7,11 @@ const Home = () => {
     <div className="bg-gray-900 text-white">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          className="absolute inset-0 w-full h-full object-cover z-0"
-        >
-          <source src={v1} type="video/mp4" />
-          Votre navigateur ne supporte pas la vidéo HTML5.
-        </video>
+       <video width="100%" height="auto" controls>
+  <source src="videos/ta-video.mp4" type="video/mp4">
+  <p>Votre navigateur ne supporte pas la vidéo.</p>
+</video>
+
         <div className="absolute inset-0 bg-black bg-opacity-60 z-10"></div>
         <motion.div
           className="text-center z-20 px-4"
