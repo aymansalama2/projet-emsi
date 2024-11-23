@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaBars, FaTimes, FaChevronDown } from 'react-icons/fa'; // Icônes de React Icons
+import { FaBars, FaTimes } from 'react-icons/fa';
 import logo from '../assets/logo.jpg'; // Si l'image est dans le dossier src/assets
 
 const Navbar = () => {
@@ -8,17 +8,17 @@ const Navbar = () => {
   return (
     <header className="fixed w-full bg-gray-900 text-white shadow-md z-50">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-      <img
+        {/* Logo */}
+        <img
           src={logo}
           alt="Logo EMSI Dev Squad"
-          className="w-16 h-16 rounded-full border-4 border-teal-500 shadow-lg" // Logo circulaire
+          className="w-12 h-12 rounded-full border-4 border-teal-500 shadow-lg"
         />
-        {/* Logo */}
-        <h1 className="text-2xl font-bold text-gradient ">
+        <h1 className="text-2xl font-bold text-gradient hidden sm:block">
           EMSI Dev Squad
         </h1>
 
-        {/* Navigation Links - Desktop */}
+        {/* Desktop Navigation Links */}
         <nav className="hidden md:flex space-x-6">
           <a href="#features" className="hover:text-teal-400 transition">
             Fonctionnalités
@@ -34,7 +34,7 @@ const Navbar = () => {
           </a>
         </nav>
 
-        {/* Login & Sign Up - Desktop */}
+        {/* Login & Sign Up Buttons (Desktop) */}
         <div className="hidden md:flex space-x-4">
           <button className="px-4 py-2 bg-blue-500 rounded-full hover:bg-blue-400 transition">
             Login
