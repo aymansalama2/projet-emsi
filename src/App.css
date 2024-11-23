@@ -1,0 +1,9 @@
+/* App.css */
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.text-gradient {
+  background: linear-gradient(90deg, #3b82f6, #14b8a6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
