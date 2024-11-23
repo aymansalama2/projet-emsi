@@ -12,9 +12,9 @@ const Navbar = () => {
         <img
           src={logo}
           alt="Logo EMSI Dev Squad"
-          className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full border-4 border-teal-500 shadow-lg"
+          className="w-12 h-12 sm:w-16 sm:h-16 md:w-16 md:h-16 rounded-full border-4 border-teal-500 shadow-lg"
         />
-        <h1 className="text-lg sm:text-2xl font-bold text-gradient hidden sm:block">
+        <h1 className="text-lg sm:text-xl font-bold text-gradient hidden sm:block">
           EMSI Dev Squad
         </h1>
 
