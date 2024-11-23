@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import v1 from "../assets/v1.mp4"
+
 const Home = () => {
   return (
     <div className="bg-gray-900 text-white">
@@ -22,10 +23,10 @@ const Home = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5 }}
         >
-          <h1 className="text-5xl font-bold text-gradient ">
+          <h1 className="text-4xl sm:text-5xl font-bold text-gradient ">
             Plongez dans l'Univers du Développement Web
           </h1>
-          <p className="mt-4 text-lg md:text-xl text-gray-200">
+          <p className="mt-4 text-lg sm:text-xl text-gray-200">
             Apprenez à coder, construisez des applications, et rejoignez une communauté dynamique de développeurs.
           </p>
           <a
@@ -58,7 +59,7 @@ const Home = () => {
           <h2 className="text-4xl font-bold text-gradient ">
             Nos Fonctionnalités
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
             {[ 
               {
                 title: 'Apprentissage Pratique',
@@ -100,7 +101,7 @@ const Home = () => {
           <h2 className="text-4xl font-bold text-gradient ">
             Événements à Venir
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
             {[ 
               {
                 title: 'Hackathon Web',
