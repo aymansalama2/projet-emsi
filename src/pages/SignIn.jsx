@@ -35,7 +35,13 @@ const Login = () => {
       setError("");
       setSuccess("Connexion réussie !");
       setTimeout(() => {
-        navigate(`/profile/${auth.currentUser.uid}`); // Redirige vers la page de profil
+        if (email === "admin@gmail.com") {
+          // Redirection vers la page admin si l'email correspond à celui de l'admin
+          navigate("/admin");
+        } else {
+          // Redirection vers le profil utilisateur classique
+          navigate(`/profile/${auth.currentUser.uid}`);
+        }
       }, 1000);
     } catch (err) {
       setError("Email ou mot de passe incorrect.");

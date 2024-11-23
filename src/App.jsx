@@ -6,6 +6,7 @@ import Navbar from './pages/Navbar';
 import Signup from './pages/SignUp';
 import UserProfile from './pages/UserProfile';
 import Login from './pages/SignIn';
+import AdminDashboard from './pages/AdminDashboard';
 
 export default function App() {
     return (
@@ -13,6 +14,8 @@ export default function App() {
             <Navbar />
 
             <Routes>
+            <Route path="/admin" element={<AdminDashboard />} />
+
             <Route path="/login" element={<Login/>} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/profile/:userId" element={<UserProfile />} />

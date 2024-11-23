@@ -10,6 +10,7 @@ const UserProfile = () => {
   const [userData, setUserData] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [newMessage, setNewMessage] = useState("");
+  const [adminMessages, setAdminMessages] = useState([]);
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
 
@@ -31,7 +32,25 @@ const UserProfile = () => {
       }
     };
 
+    const fetchAdminMessages = async () => {
+      try {
+        const db = getDatabase();
+        const messagesRef = ref(db, "adminMessages");
+        const snapshot = await get(messagesRef);
+
+        if (snapshot.exists()) {
+          setAdminMessages(snapshot.val());
+        } else {
+          setAdminMessages([]);
+        }
+      } catch (err) {
+        setError("Erreur lors de la récupération des messages de l'admin.");
+      }
+    };
+
     fetchUserData();
+    fetchAdminMessages();
+
   }, [userId]);
 
   // Gérer la mise à jour des données
@@ -211,39 +230,39 @@ const UserProfile = () => {
           )}
         </div>
 
-        {/* Section pour envoyer un message */}
+        {/* Messages de l'Admin */}
         <div className="mt-8">
-          <h2 className="text-xl font-bold mb-4">Envoyer un message</h2>
+          <h2 className="text-2xl mb-4">Messages de l'Admin</h2>
+          {adminMessages.length > 0 ? (
+            <ul className="space-y-4">
+              {adminMessages.map((msg, index) => (
+                <li key={index} className="bg-gray-700 p-4 rounded shadow-lg">
+                  <p>{msg.text}</p>
+                  <small className="text-gray-400">Envoyé par : {msg.sentBy}</small>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>Aucun message de l'admin pour le moment.</p>
+          )}
+        </div>
+
+        {/* Envoyer un message */}
+        <div className="mt-8">
+          <h2 className="text-2xl mb-4">Envoyer un message</h2>
           <textarea
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
-            className="w-full p-2 bg-gray-700 rounded border border-gray-600 focus:outline-none"
-            placeholder="Écrivez votre message ici..."
+            className="w-full p-2 bg-gray-700 rounded border border-gray-600 focus:outline-none mb-4"
+            placeholder="Écrire votre message ici..."
           ></textarea>
           <button
             onClick={handleSendMessage}
-            className="mt-4 px-4 py-2 bg-teal-500 rounded hover:bg-teal-400 transition"
+            className="px-4 py-2 bg-purple-500 rounded hover:bg-purple-400 transition"
           >
             Envoyer
           </button>
         </div>
-
-        {/* Liste des messages existants */}
-        {userData.messages && userData.messages.length > 0 && (
-          <div className="mt-8">
-            <h2 className="text-xl font-bold mb-4">Vos messages</h2>
-            <ul className="space-y-4">
-              {userData.messages.map((msg, index) => (
-                <li
-                  key={index}
-                  className="p-4 bg-gray-700 rounded border border-gray-600"
-                >
-                  {msg.message}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
       </div>
     </div>
   );
