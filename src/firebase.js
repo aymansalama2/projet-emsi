@@ -1,17 +1,16 @@
+// firebaseConfig.js
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "TON_API_KEY",
-  authDomain: "TON_PROJECT_ID.firebaseapp.com",
-  projectId: "TON_PROJECT_ID",
-  storageBucket: "TON_PROJECT_ID.appspot.com",
-  messagingSenderId: "TON_SENDER_ID",
-  appId: "TON_APP_ID",
-  measurementId: "TON_MEASUREMENT_ID",
+  apiKey: "AIzaSyCl6sx6ddby3r9L5Z47WKctX2leGO4eDPI",
+  authDomain: "emsi-5ae3f.firebaseapp.com",
+  projectId: "emsi-5ae3f",
+  storageBucket: "emsi-5ae3f.firebasestorage.app",
+  messagingSenderId: "597224018382",
+  appId: "1:597224018382:web:331950968024e168d25b9f",
+  measurementId: "G-YR0EG85S62",
 };
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const db = getFirestore(app);
