@@ -32,21 +32,27 @@ const UserProfile = () => {
       }
     };
 
-    const fetchAdminMessages = async () => {
-      try {
-        const db = getDatabase();
-        const messagesRef = ref(db, "adminMessages");
-        const snapshot = await get(messagesRef);
+   // Section pour récupérer les messages d'administration
+const fetchAdminMessages = async () => {
+  try {
+    const db = getDatabase();
+    const messagesRef = ref(db, "adminMessages");
+    const snapshot = await get(messagesRef);
 
-        if (snapshot.exists()) {
-          setAdminMessages(snapshot.val());
-        } else {
-          setAdminMessages([]);
-        }
-      } catch (err) {
-        setError("Erreur lors de la récupération des messages de l'admin.");
-      }
-    };
+    if (snapshot.exists()) {
+      const messages = Object.entries(snapshot.val()).map(([key, value]) => ({
+        id: key,
+        ...value,
+      })); // Convertir les messages en tableau
+      setAdminMessages(messages);
+    } else {
+      setAdminMessages([]);
+    }
+  } catch (err) {
+    setError("Erreur lors de la récupération des messages de l'admin.");
+  }
+};
+
 
     fetchUserData();
     fetchAdminMessages();
@@ -231,21 +237,49 @@ const UserProfile = () => {
         </div>
 
         {/* Messages de l'Admin */}
-        <div className="mt-8">
-          <h2 className="text-2xl mb-4">Messages de l'Admin</h2>
-          {adminMessages.length > 0 ? (
-            <ul className="space-y-4">
-              {adminMessages.map((msg, index) => (
-                <li key={index} className="bg-gray-700 p-4 rounded shadow-lg">
-                  <p>{msg.text}</p>
-                  <small className="text-gray-400">Envoyé par : {msg.sentBy}</small>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>Aucun message de l'admin pour le moment.</p>
-          )}
-        </div>
+{/* Messages de l'Admin */}
+{/* Messages de l'Admin */}
+<div className="mt-8">
+  <h2 className="text-3xl font-bold mb-6 text-gray-100 text-center">Messages de l'Admin</h2>
+  {adminMessages.length > 0 ? (
+    <div className="overflow-x-auto">
+      <table className="w-full max-w-2xl mx-auto table-auto bg-gray-800 shadow-lg rounded-lg">
+        <thead>
+          <tr className="bg-gray-700">
+            <th className="px-6 py-4 text-left text-sm font-medium text-gray-200 uppercase tracking-wider">
+              Message
+            </th>
+            <th className="px-6 py-4 text-left text-sm font-medium text-gray-200 uppercase tracking-wider">
+              Date et Heure
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {adminMessages.map((msg, index) => (
+            <tr
+              key={index}
+              className={`${
+                index % 2 === 0 ? "bg-gray-900" : "bg-gray-800"
+              } hover:bg-gray-700 transition-colors`}
+            >
+              <td className="px-6 py-4 text-sm text-gray-300">
+                {msg.text}
+              </td>
+              <td className="px-6 py-4 text-sm text-gray-400">
+                {new Date(msg.timestamp).toLocaleString("fr-FR")}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  ) : (
+    <p className="text-gray-400 text-center">Aucun message de l'admin pour le moment.</p>
+  )}
+</div>
+
+
+
 
         {/* Envoyer un message */}
         <div className="mt-8">

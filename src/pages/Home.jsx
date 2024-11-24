@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import v1 from "../assets/v1.mp4"
+import v1 from "../assets/v1.mp4";
+import { Link } from "react-router-dom";
+
 
 const Home = () => {
   return (
@@ -29,12 +31,13 @@ const Home = () => {
           <p className="mt-4 text-lg sm:text-xl text-gray-200">
             Apprenez à coder, construisez des applications, et rejoignez une communauté dynamique de développeurs.
           </p>
-          <a
-            href="#signup"
-            className="mt-6 inline-block bg-green-500 hover:bg-green-400 text-white px-6 py-3 rounded-full shadow-xl transition-all duration-300"
+         
+          <Link to="/login">
+          <button             className="mt-6 inline-block bg-green-500 hover:bg-green-400 text-white px-6 py-3 rounded-full shadow-xl transition-all duration-300"
           >
             Rejoignez-nous
-          </a>
+            </button>
+        </Link>
         </motion.div>
       </section>
 

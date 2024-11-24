@@ -7,3 +7,31 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.min-h-screen {
+  position: relative;
+  overflow: hidden;
+}
+
+.min-h-screen::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 10%, transparent 80%);
+  z-index: -1;
+  transform: translate(-50%, -50%) scale(1);
+  animation: rotateBg 10s linear infinite;
+}
+
+@keyframes rotateBg {
+  to {
+    transform: translate(-50%, -50%) scale(1) rotate(360deg);
+  }
+}
